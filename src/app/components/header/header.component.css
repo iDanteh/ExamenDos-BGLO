@@ -1,0 +1,20 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar{
+    background-color: rgb(178, 178, 212);
+}
+
+img:hover{
+    cursor: pointer;
+}
+
+li{
+    list-style-type: none;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

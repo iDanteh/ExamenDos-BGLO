@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="login-box">
+        <ng-container *ngIf="!showRegisterForm; else registerFormTemplate">
+            <h1>Iniciar Sesión</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="textbox">
+                    <label for="email">Email</label>
+                    <input formControlName="email" type="email" id="email" placeholder="Ingrese su correo" required>
+                </div>
+                <div class="textbox">
+                    <label for="password">Password</label>
+                    <input formControlName="password" type="password" id="password" placeholder="Ingrese su contraseña"
+                        required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <a href="#" class="toggle-register" (click)="toggleForm(); $event.preventDefault()">Regístrate</a>
+        </ng-container>
+
+        <ng-template #registerFormTemplate>
+            <h2>Registrarse</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+                <div class="textbox">
+                    <label for="nombre">Nombre</label>
+                    <input formControlName="name" type="text" id="nombre" placeholder="Ingrese nombre de usuario">
+                </div>
+                <div class="textbox">
+                    <label for="correo">Correo</label>
+                    <input formControlName="email" type="email" id="correo" placeholder="Ingrese su correo">
+                </div>
+                <div class="textbox">
+                    <label for="contraseña">Contraseña</label>
+                    <input formControlName="password" type="password" id="contraseña"
+                        placeholder="Ingrese su contraseña">
+                </div>
+                <button type="submit" class="btn">Register</button>
+            </form>
+            <a href="#" class="toggle-register" (click)="toggleForm(); $event.preventDefault()">Iniciar Sesión</a>
+        </ng-template>
+    </div>
+</div>

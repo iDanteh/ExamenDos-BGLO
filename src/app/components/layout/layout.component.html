@@ -1,0 +1,77 @@
+<app-header></app-header>
+<div class="form-container">
+    <mat-form-field class="custom-form-field">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="selectedProduct.title" placeholder="Nombre del producto">
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+        <mat-label>Imagen URL</mat-label>
+        <input matInput [(ngModel)]="selectedProduct.image" placeholder="URL de la imagen">
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+        <mat-label>Precio</mat-label>
+        <input matInput [(ngModel)]="selectedProduct.price" placeholder="Precio">
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput [(ngModel)]="selectedProduct.description" placeholder="Descripción"></textarea>
+    </mat-form-field>
+
+    <div>
+        <button mat-raised-button color="primary" class="custom-button" (click)="updateProduct()">
+            <mat-icon>update</mat-icon>Actualizar Producto
+        </button>
+        <button mat-raised-button color="accent" class="custom-button" (click)="addProduct()">
+            <mat-icon>add</mat-icon>Agregar Producto
+        </button>
+    </div>
+</div>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-table">
+
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <img [src]="element.image" alt="product" width="80" height="80" class="product-image">
+            </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let element">${{element.price}}</td>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Descripción</th>
+            <td mat-cell *matCellDef="let element">{{element.description}}</td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{element.title}}</td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-button (click)="deleteProduct(element)">
+                    <mat-icon>delete</mat-icon>Eliminar
+                </button>
+                <button mat-button (click)="editProduct(element)">
+                    <mat-icon>edit</mat-icon>Actualizar
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row" (click)="getRow(row)"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements"></mat-paginator>
+</div>
